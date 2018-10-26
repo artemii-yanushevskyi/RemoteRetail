@@ -14,6 +14,9 @@
   </head>
   <body>	
 
+<<<<<<< HEAD
+    <h1>Good {{ daytime }}, {{ nickname }}.</h1> <!-- Change "Hello" to Good <daytime>
+=======
 <div class='container'>
 	<h2>User</h2>
 {% for patron in patrons %}
@@ -28,15 +31,18 @@
 
 
     <h1>Hello {{ nickname }}.</h1> <!-- Change "Hello" to Good <daytime>
+>>>>>>> 677d31f105bcd8bdc8b18a2e6b1027783e69dbac
     <a class="btn btn-primary" href="{% static 'purchase.html' %}" role="button">Purchases</a>
     <a class="btn btn-primary" href="{% static 'sale.html' %}" role="button">Sales</a> -->
+    <h6>Your balance: {{ balance }}</h6>
     
     <div class="table" id="purchasesTable"></div>
 
     <!-- Optional JavaScript -->
     <script src="{% static 'js/script.js' %}"></script>
     <script>
-        
+        var purchases = {{ purchasesTable | safe }};
+        document.getElementById("purchasesTable").innerHTML = WritePurchasesTable(purchasesTable);
     </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
