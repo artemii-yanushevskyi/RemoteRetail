@@ -1,0 +1,12 @@
+Django
+django-cors-headers
+django-debug-toolbar
+django-filter
+django-rest-swagger
+django-split-settings
+djangorestframework
+djangorestframework-jwt
+graypy
+psycopg2
+raven
+Unidecode
