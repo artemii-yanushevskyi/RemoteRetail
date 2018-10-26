@@ -1,0 +1,20 @@
+[
+  {
+    "model": "retail.patron",
+    "pk": 1,
+    "fields": {
+        "nickname": "Артем",
+        "email": "artemii.yanushevskyi@gmail.com",
+				"balance": 21
+			}
+  },
+  {
+    "model": "retail.patron",
+    "pk": 2,
+    "fields": {
+        "nickname": "Влад",
+        "email": "cr4vlad@gmail.com",
+				"balance": 17
+			}
+  }
+]
