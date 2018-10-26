@@ -8,4 +8,7 @@ from django.shortcuts import render
 # Create your views here.
 
 def landing_page(request):
-    return render(request, 'retail/index.html')
+    patrons = Patron.objects.order_by('nickname')
+    return render(request, 'retail/index.html', {
+        'patrons': patrons,
+    })

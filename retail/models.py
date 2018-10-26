@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 class Patron(models.Model):
-    name = models.CharField(max_length=40)
+    nickname = models.CharField(max_length=40)
     email = models.CharField(max_length=20, null=True)
     balance = models.IntegerField(default=0)
 
