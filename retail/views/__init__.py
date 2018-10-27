@@ -3,17 +3,12 @@ Auth through corporate mail or co-working OAuth or co-working email
 - main page - dashboard
     - purchased goods
     - offered goods
-
-
-
 """
 
-from ..models import Patron, Wallet
+from ..models import Patron, Wallet, Purchase
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-
-
 
 def landing_page(request):
     patrons = Patron.objects.order_by('nickname')
@@ -41,17 +36,28 @@ def landing_page(request):
     })
     
 def dashboard(request, nickname):
-    patron = Patron.objects.get(nickname=nickname)
-    wallet = Wallet(patron=patron, balance=5)
     request.session['nickname'] = nickname
+    message = ''
+    patron = Patron.objects.get(nickname=nickname)
+    if Wallet.objects.filter(patron=patron).exists():
+        message += 'patron {} has a wallet'.format(patron.nickname)
+    else:
+        message += 'patron {} doesn\'t have a wallet, create new'.format(patron.nickname)
+        wallet = Wallet.objects.create(patron=patron, balance=25)
+    
+    purchases = Purchase.objects.order_by('-pk')
     response = render(request, 'retail/dashboard.html', {
             'patron': patron,
-            'wallet': wallet,
+            'wallet': patron.wallet,
+            'message': message,
+            'purchases': purchases
             })
     return response
 
 def process_qr(request):
-    
+    '''
+    /retail/qr/?price=2000&name=Орео&seller=Влад
+    '''
     # who buys??
     if 'nickname' in request.session:
         nickname = request.session['nickname']
@@ -63,9 +69,20 @@ def process_qr(request):
         purchase_qr = request.GET
         
         seller = Patron.objects.get(nickname=purchase_qr['seller'])
-        # if seller doesn't exist, create patron
-        purchase = Purchase.objects.create(good=purchase_qr['name'], price=purchase_qr['price'], seller=seller, buyer=buyer)
-    
+        
+        price=purchase_qr['price']
+        
+        from decimal import Decimal
+        seller_wallet = Wallet.objects.get(patron=seller)
+        seller_wallet.balance = seller_wallet.balance + Decimal(price)
+        seller_wallet.save()
+        
+        buyer_wallet = Wallet.objects.get(patron=buyer)
+        buyer_wallet.balance = buyer_wallet.balance - Decimal(price)
+        buyer_wallet.save()
+        
+        purchase = Purchase.objects.create(name=purchase_qr['name'], price=price, seller=seller, buyer=buyer)
+        
         return render(request, 'retail/purchase.html', {
             'purchase': purchase,
         })
