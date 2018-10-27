@@ -26,5 +26,5 @@ table, td {
 input, label {
   margin: 10px, 0px, 10px, 100px;
   display: block;
-  max-width: 100px
+  max-width: 100px;
 }
