@@ -35,14 +35,27 @@ def landing_page(request):
         'form': form,
     })
     
-def dashboard(request, nickname):
-    request.session['nickname'] = nickname
-    message = ''
-    patron = Patron.objects.get(nickname=nickname)
-    if Wallet.objects.filter(patron=patron).exists():
-        message += 'patron {} has a wallet'.format(patron.nickname)
+def dashboard(request, nickname=None):
+    if not nickname:
+        if 'nickname' in request.session:
+            nickname = request.session['nickname']
+        else:
+            return HttpResponseRedirect(reverse('landing_page'))
     else:
-        message += 'patron {} doesn\'t have a wallet, create new'.format(patron.nickname)
+        request.session['nickname'] = nickname
+    
+    message = ''
+    if Patron.objects.filter(nickname=nickname).exists():
+        patron = Patron.objects.get(nickname=nickname)
+        message += 'Welcome back {}! <br>'.format(patron.nickname)
+    else:
+        patron = Patron.objects.create(nickname=nickname)
+        message += 'Patron {} is new to RemoteRetail. Congrats, you are registered! <br>'.format(patron.nickname)
+        
+    if Wallet.objects.filter(patron=patron).exists():
+        message += 'Patron {} has a wallet.'.format(patron.nickname)
+    else:
+        message += 'Patron {} didn\'t have a wallet, the new wallet have been created. You starting balance is 25. You are fully set up!'.format(patron.nickname)
         wallet = Wallet.objects.create(patron=patron, balance=25)
     
     purchases = Purchase.objects.order_by('-pk')
@@ -58,7 +71,7 @@ def process_qr(request):
     '''
     /retail/qr/?price=2000&name=Орео&seller=Влад
     '''
-    # who buys??
+    
     if 'nickname' in request.session:
         nickname = request.session['nickname']
         if Patron.objects.filter(nickname=nickname).exists():

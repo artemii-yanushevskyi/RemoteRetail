@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.landing_page, name='landing_page'),
-    path('qr/', views.process_qr, name='process_qr'),    
+    path('qr/', views.process_qr, name='process_qr'),
+    re_path(r'patron/?$', views.dashboard, name='dashboard'),    
     re_path(r'patron/(?P<nickname>[\s\w-]*)/?$', views.dashboard, name='dashboard'),
 ]
