@@ -13,14 +13,22 @@
 }*/
 
 function WritePurchasesTable(purchasesTable) {
-	if (typeof purchasesTable === "object") {
-		html = `
-		<table>
-		
-		</table>`;
-	}
-	else {
-		html = purchasesTable;
-	}
-	return html;
+if (typeof purchasesTable === "object") {
+	html = `
+	<table>
+    <tbody>\n`;
+    for (var key in dictionary) {
+      html += "<tr>\n";
+      html += "  <td>" + key + "</td>\n";
+      html += "  <td " + "</td>\n";
+      html += "</tr>\n\n";
+    }
+    html += `
+    </tbody>
+	</table>`;
+}
+else {
+	html = purchasesTable;
+}
+return html;
 }

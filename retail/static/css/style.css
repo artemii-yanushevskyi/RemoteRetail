@@ -1,5 +1,24 @@
-test {
-  position: fixed;
-  bottom: 0;
-  color: cyan;
-} 
+body {
+	font-family: "Montserrat", "Helvetica", "Lucida Sans", "Lucida Sans Unicode", "Luxi Sans", Tahoma, sans-serif;
+	color: #c5c6c7;
+	background-color: #1f2833;
+}
+
+h1, h2, h3, h4, h5, h6, .align-items-center {
+	color: #66fcf1;
+}
+
+table, td {
+  text-align: center;
+  border: 2px solid #45a29e;
+}
+
+.button {
+  background-color: #1f2833;
+  color: #c5c6c7;
+  border: 2px solid #45a29e;
+}
+
+.button:hover {
+  background-color: #0b0c10;
+}
