@@ -10,7 +10,7 @@
 		result = "afternoon"
 	}
 	return result
-}*/
+}
 
 function WritePurchasesTable(purchasesTable) {
 if (typeof purchasesTable === "object") {
@@ -31,4 +31,4 @@ else {
 	html = purchasesTable;
 }
 return html;
-}
+}*/

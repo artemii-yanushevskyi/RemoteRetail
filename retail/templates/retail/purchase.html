@@ -11,13 +11,13 @@
 	
   <link href="https://fonts.googleapis.com/css?family=Montserrat:100,400" rel="stylesheet">
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Purchase |RemoteRetail</title>
+    <title>Purchase | RemoteRetail</title>
   </head>
   <body>	
 
-    <h3>Hello {{ nickname }}.</h3> <!-- Change "Hello" to Good {{ daytime }} -->
-    <p>Product {{ name }} has been sold by {{ seller }} for {{ price }}</p>
-    <p>Your current balance: {{ balance }}</p>
+    <h3>Hello, {{ patron.nickname }}.</h3> <!-- Change "Hello" to Good {{ daytime }} -->
+    <p>Product {{ purchase.name }} has been sold by {{ purchase.seller }} for {{ purchase.price }}</p>
+    <p>Your current balance: {{ wallet.balance }}</p>
 
     <!-- Optional JavaScript -->
     <script src="{% static 'js/script.js' %}"></script>
