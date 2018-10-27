@@ -40,3 +40,11 @@ input, label {
 .sales {
   visibility: hidden;
 }
+
+table {
+  width: 96%;
+}
+
+td, th {
+  width: 16%;
+}
