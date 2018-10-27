@@ -18,6 +18,8 @@
     <h3>Hello, {{ purchase.buyer.nickname }}.</h3> <!-- Change "Hello" to Good {{ daytime }} -->
     <p>Product {{ purchase.name }} has been sold by {{ purchase.seller.nickname }} for {{ purchase.price }}</p>
     <p>Your current balance: {{ purchase.buyer.wallet.balance }}</p>
+    <br>
+    <p><a href="{% static 'dashboard.html' %}">Back to Dashboard</a></p>
 
     <!-- Optional JavaScript -->
     <script src="{% static 'js/script.js' %}"></script>
