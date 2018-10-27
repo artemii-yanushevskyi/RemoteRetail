@@ -15,9 +15,9 @@
   </head>
   <body>	
 
-    <h3>Hello, {{ patron.nickname }}.</h3> <!-- Change "Hello" to Good {{ daytime }} -->
-    <p>Product {{ purchase.name }} has been sold by {{ purchase.seller }} for {{ purchase.price }}</p>
-    <p>Your current balance: {{ wallet.balance }}</p>
+    <h3>Hello, {{ purchase.buyer.nickname }}.</h3> <!-- Change "Hello" to Good {{ daytime }} -->
+    <p>Product {{ purchase.name }} has been sold by {{ purchase.seller.nickname }} for {{ purchase.price }}</p>
+    <p>Your current balance: {{ purchase.buyer.wallet.balance }}</p>
 
     <!-- Optional JavaScript -->
     <script src="{% static 'js/script.js' %}"></script>
