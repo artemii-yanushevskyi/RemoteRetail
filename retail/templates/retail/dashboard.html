@@ -30,14 +30,14 @@
     <div class="row align-items-end">
       <div id="purchases">
         <table>
-          <tr><th>ID</th><th>Good</th><th>Seller</th><th>Price</th><th>Time</th></tr>
+          <tr><th>ID</th><th>Good</th><th>Seller</th><th>Buyer</th><th>Price</th><th>Time</th></tr>
           {% for purchase in purchases %}
-          <tr><td>{{ purchase.pk }}</td><td>{{ purchase.name }}</td><td>{{ purchase.seller.nickname }}</td><td>{{ purchase.price }}</td><td>{{ purchase.created }}</td></tr>
+          <tr><td>{{ purchase.pk }}</td><td>{{ purchase.name }}</td><td>{{ purchase.seller.nickname }}</td><td>{{ purchase.buyer.nickname }}</td><td>{{ purchase.price }}</td><td>{{ purchase.created }}</td></tr>
           {% endfor %}
         </table>
       </div>
 
-      <div id="sales">
+      <!--<div id="sales">
         <form method='POST'>
           {% csrf_token %} {{ salesForm }} <br>
           <input class="button" type="submit" value="Add item">
@@ -48,7 +48,7 @@
           <tr><td>{{ purchase.pk }}</td><td>{{ purchase }}</td><td>{{ purchase.buyer.name }}</td><td>{{ purchase.price }}</td><td>{{ purchase.created }}</td></tr>
           {% endfor %}
         </table>
-      </div>
+      </div>-->
     </div>
     {{ message }}
   </div>
