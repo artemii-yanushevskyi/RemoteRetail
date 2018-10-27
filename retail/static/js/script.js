@@ -17,7 +17,7 @@ if (typeof purchasesTable === "object") {
 	html = `
 	<table>
     <tbody>\n`;
-    for (var key in dictionary) {
+    for (var key in purchasesTable) {
       html += "<tr>\n";
       html += "  <td>" + key + "</td>\n";
       html += "  <td " + "</td>\n";
