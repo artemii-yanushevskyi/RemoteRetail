@@ -28,24 +28,40 @@
     
     <div class="row align-items-end">
       <div id="purchases">
-        <div class="table" id="purchasesTable"></div>
+        <table>
+          <tr><th>ID</th><th>Good</th><th>Seller</th><th>Price</th><th>Time</th></tr>
+          {% for purchase in purchases %}
+          <tr><th>{{ purchase.pk }}</th><th>{{ purchase.good }}</th><th>{{ purchase.seller }}</th><th>Price</th><th>Time</th></tr>
+          {% endfor %}
+        </table>
       </div>
 
       <div id="sales">
         <form method='POST'>
           {% csrf_token %} {{ salesForm }} <br>
           <input class="button" type="submit" value="Add item">
-        </form>
-        <div class="table" id="salesTable"></div>
+        </form><br>
+        <table>
+          <tr><th>ID</th><th>Good</th><th>Buyer</th><th>Price</th><th>Time</th></tr>
+          {% for sale in sales %}
+          <tr><th>{{ purchase.pk }}</th><th>{{ purchase.good }}</th><th>{{ purchase.buyer }}</th><th>Price</th><th>Time</th></tr>
+          {% endfor %}
+        </table>
       </div>
     </div>
   </div>
-    <!-- Optional JavaScript 
+    <!-- Optional JavaScript -->
     <script src="{% static 'js/script.js' %}"></script>
     <script>
-        var purchasesTable = {{ purchasesTable | safe }};
-        document.getElementById("purchasesTable").innerHTML = WritePurchasesTable(purchasesTable);
-    </script>-->
+      purchasesButton.onclick = function() {
+        purchases.style.visibility = "visible";
+        sales.style.visibility = "hidden";
+      }
+      salesButton.onclick = function() {
+        purchases.style.visibility = "hidden";
+        sales.style.visibility = "visible";
+      }
+    </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
