@@ -34,7 +34,7 @@ table, td, th {
 input, label {
   padding: 10px, 0px, 10px, 100px;
   display: block;
-  max-width: 100px;
+  width: 100px;
 }
 
 .sales {
