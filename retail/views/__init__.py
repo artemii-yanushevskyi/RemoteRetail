@@ -10,16 +10,34 @@ Auth through corporate mail or co-working OAuth or co-working email
 
 from ..models import Patron, Wallet
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
 
 
 def landing_page(request):
     patrons = Patron.objects.order_by('nickname')
     session = [key + ': ' + value for key, value in request.session.items()]
+    from retail.forms import NicknameForm
+    
+    if request.method == 'POST':
+            # could be done this way without validation
+            # type = request.POST.get('type')
+            form_response = NicknameForm(request.POST)
+            if form_response.is_valid():
+                nickname = form_response.cleaned_data['nickname']
+                # parameters are sent to db, redirecting to this page
+                # method will be POST, form will not be resubmitted on page refresh
+                # e.g. an http GET after a POST
+                return HttpResponseRedirect(reverse('dashboard', args=[nickname]))
+                # reverse will return shop/sellername
+    
+    form = NicknameForm()
+    
     return render(request, 'retail/index.html', {
         'patrons': patrons,
         'session': str(session),
+        'form': form,
     })
     
 def dashboard(request, nickname):
@@ -41,6 +59,7 @@ def process_qr(request):
             buyer = Patron.objects.get(nickname=nickname)
         else:
             return landing_page(request)
+            
         purchase_qr = request.GET
         
         seller = Patron.objects.get(nickname=purchase_qr['seller'])
