@@ -1,13 +1,18 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
-User = get_user_model()
+# User = get_user_model()
 
+
+class Patron(models.Model):
+    nickname = models.CharField(max_length=40)
+    email = models.CharField(max_length=20, null=True)
+    balance = models.IntegerField(default=0)
 
 class Wallet(models.Model):
     balance = models.DecimalField(decimal_places=2, max_digits=10)
     user = models.OneToOneField(
-        User, related_name='wallet', on_delete=models.PROTECT
+        Patron, related_name='wallet', on_delete=models.PROTECT
     )
 
     class Meta:
@@ -30,8 +35,8 @@ class Purchase(models.Model):
         related_name='purchases', related_query_name='purchase'
     )
 
-    seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='seller')
-    buyer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='buyer')
+    seller = models.ForeignKey(Patron, on_delete=models.CASCADE, related_name='seller')
+    buyer = models.ForeignKey(Patron, on_delete=models.CASCADE, related_name='buyer')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
