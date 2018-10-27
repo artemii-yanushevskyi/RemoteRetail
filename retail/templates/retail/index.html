@@ -15,7 +15,15 @@
   </head>
   <body>
   <div class='container'>
-    {{ session }}
+{% for user in users %}
+<p>
+<div>
+  <h3>{{ users.username }}</h3>
+  <p>{{ users.email }}</p>
+</div>
+</p>
+{% endfor %}
+    <code>{{ session }}</code>
     <!--<form method='POST'>
       {% csrf_token %} {{ loginForm }} <br>
       <input class="button" type="submit" value="Login">
