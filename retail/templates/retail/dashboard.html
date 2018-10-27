@@ -31,7 +31,7 @@
         <table>
           <tr><th>ID</th><th>Good</th><th>Seller</th><th>Price</th><th>Time</th></tr>
           {% for purchase in purchases %}
-          <tr><th>{{ purchase.pk }}</th><th>{{ purchase.good }}</th><th>{{ purchase.seller }}</th><th>Price</th><th>Time</th></tr>
+          <tr><td>{{ purchase.pk }}</td><td>{{ purchase.good.name }}</td><td>{{ purchase.seller }}</td><td>{{ purchase.good.price }}</td><td>{{ purchase.created }}</td></tr>
           {% endfor %}
         </table>
       </div>
@@ -44,7 +44,7 @@
         <table>
           <tr><th>ID</th><th>Good</th><th>Buyer</th><th>Price</th><th>Time</th></tr>
           {% for sale in sales %}
-          <tr><th>{{ purchase.pk }}</th><th>{{ purchase.good }}</th><th>{{ purchase.buyer }}</th><th>Price</th><th>Time</th></tr>
+          <tr><td>{{ purchase.pk }}</td><td>{{ purchase.good }}</td><td>{{ purchase.buyer }}</td><td>{{ purchase.good.price }}</td><td>{{ purchase.created }}</td></tr>
           {% endfor %}
         </table>
       </div>
