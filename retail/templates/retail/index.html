@@ -14,13 +14,13 @@
     <title>Welcome to RemoteRetail</title>
   </head>
   <body>
-	
+	<div class="container">
 	<form method='POST'>
 	  {% csrf_token %} {{ form }}
 	  <input class="button" type="submit" value="Submit">
 	</form>
 		<br>
-  <div class='container'>
+  <div class='container text-center'>
 {% for user in users %}
 <p>
 <div>
@@ -30,6 +30,7 @@
 </p>
 {% endfor %}<br>
     <code>{{ session }}</code>
+</div>
     <!--<form method='POST'>
       {% csrf_token %} {{ loginForm }} <br>
       <input class="button" type="submit" value="Login">
