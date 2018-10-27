@@ -19,7 +19,7 @@
 	  {% csrf_token %} {{ form }}
 	  <input class="button" type="submit" value="Submit">
 	</form>
-		
+		<br>
   <div class='container'>
 {% for user in users %}
 <p>
@@ -28,7 +28,7 @@
   <p>{{ users.email }}</p>
 </div>
 </p>
-{% endfor %}
+{% endfor %}<br>
     <code>{{ session }}</code>
     <!--<form method='POST'>
       {% csrf_token %} {{ loginForm }} <br>
