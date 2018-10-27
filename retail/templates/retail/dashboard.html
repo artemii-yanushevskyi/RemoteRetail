@@ -18,8 +18,8 @@
   <div class='container'>
     <div class="row align-items-start justify-content-between">
       <div class="col-4"><h1>Hello, {{ patron.nickname }}.</h1></div>
-      <div class="col-4">Email: {{ patron.email }}</div>
-      <div class="col-4 text-right">Your balance: {{ wallet.balance }}</div>
+      <div class="col-4"><p>Email: {{ patron.email }}</p></div>
+      <div class="col-4 text-right"><p>Your balance: {{ wallet.balance }}</p></div>
     </div>
 
     <div class="row align-items-center">
@@ -32,7 +32,7 @@
         <table>
           <tr><th>ID</th><th>Good</th><th>Seller</th><th>Price</th><th>Time</th></tr>
           {% for purchase in purchases %}
-          <tr><td>{{ purchase.pk }}</td><td>{{ purchase.name }}</td><td>{{ purchase.seller }}</td><td>{{ purchase.price }}</td><td>{{ purchase.created }}</td></tr>
+          <tr><td>{{ purchase.pk }}</td><td>{{ purchase.name }}</td><td>{{ purchase.seller.name }}</td><td>{{ purchase.price }}</td><td>{{ purchase.created }}</td></tr>
           {% endfor %}
         </table>
       </div>
@@ -45,11 +45,12 @@
         <table>
           <tr><th>ID</th><th>Good</th><th>Buyer</th><th>Price</th><th>Time</th></tr>
           {% for sale in sales %}
-          <tr><td>{{ purchase.pk }}</td><td>{{ purchase.good }}</td><td>{{ purchase.buyer }}</td><td>{{ purchase.good.price }}</td><td>{{ purchase.created }}</td></tr>
+          <tr><td>{{ purchase.pk }}</td><td>{{ purchase }}</td><td>{{ purchase.buyer.name }}</td><td>{{ purchase.price }}</td><td>{{ purchase.created }}</td></tr>
           {% endfor %}
         </table>
       </div>
     </div>
+    {{ message }}
   </div>
     <!-- Optional JavaScript 
     <script src="{% static 'js/script.js' %}"></script>-->
