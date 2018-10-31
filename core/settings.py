@@ -120,3 +120,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 INSTALLED_APPS.append('retail')
 TIME_ZONE = 'Europe/Kiev'
+
+ALLOWED_HOSTS = ['fabulous.alwaysdata.net', 'reasongrace.com', 'localhost', '127.0.0.1']
