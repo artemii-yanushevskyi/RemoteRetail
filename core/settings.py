@@ -117,8 +117,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
+
 INSTALLED_APPS.append('retail')
+INSTALLED_APPS.append('purchasetap')
 TIME_ZONE = 'Europe/Kiev'
+
 
 ALLOWED_HOSTS = ['fabulous.alwaysdata.net', 'reasongrace.com', 'localhost', '127.0.0.1']

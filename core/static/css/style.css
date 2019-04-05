@@ -1,0 +1,45 @@
+body {
+	font-family: "Montserrat", "Helvetica", "Lucida Sans", "Lucida Sans Unicode", "Luxi Sans", Tahoma, sans-serif;
+  font-size: 16px;
+	color: #c5c6c7;
+	background-color: #1f2833;
+}
+
+h1, h2, h3, h4, h5, h6, .align-items-center {
+	font-size: 25px;
+  color: #66fcf1;
+  margin: 15px;
+}
+
+p {
+  margin: 15px;
+}
+
+table, td, th {
+  text-align: center;
+  border: 2px solid #45a29e;
+}
+
+.button {
+  background-color: #1f2833;
+  color: #c5c6c7;
+  border: 2px solid #45a29e;
+  padding: 15px;
+}
+
+.button:hover {
+  background-color: #0b0c10;
+}
+
+input, label {
+  padding: 10px, 0px, 10px, 100px;
+  display: block;
+}
+
+.sales {
+  visibility: hidden;
+}
+
+th {
+  color: #45a29e;
+}
