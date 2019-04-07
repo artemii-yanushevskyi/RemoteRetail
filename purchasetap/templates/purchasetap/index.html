@@ -1,32 +1,112 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends 'purchasetap/base.html' %}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+{% block content %}
+  <h1>Welcome to PurchaseTap</h1>
+  <h3>Hello {{username | title}}!</h3>
 
-	  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,400" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Welcome to PurchaseTap</title>
-  </head>
-  <body>
-	<div class="container">
-    <form action="logout" method="post">
-      {% csrf_token %}
-    <input type="submit" value="Log Out">
-</form>
+  <div class="container" id="tap">
+    <form method="post">
+      {% for product in products %}
+        <button value={{ product.name }}>{{ product.name }} for {{ product.price }}</button>
+      {% endfor %}
+    </form>
   </div>
 
 
-    <!-- Optional JavaScript
-    <script src="{% static 'js/script.js' %}"></script>-->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
-</html>
+  {% csrf_token %}
+  <script type="text/javascript">
+  // using jQuery
+  var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+
+  function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  }
+  $.ajaxSetup({
+      beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+      }
+  });
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $("button").click(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/tap/ajax/count/",
+            data: {
+                product: $(this).val(), // < note use of 'this' here
+                something: "abcd",
+            },
+            dataType: 'json',
+            success: function (data) {
+              alert("SOLD");
+              console.log('Sold');
+              if (data.is_taken) {
+                alert("A user with this username already exists.");
+              }
+            },
+            error: function(result) {
+                alert('error');
+            }
+        });
+      });
+    });
+  </script>
+
+
+  <div class="login container">
+    <form action="logout" method="post">
+      {% csrf_token %}
+      <input class="loginbutton" type="submit" value="Log Out">
+    </form>
+  </div>
+
+<div class="container">
+  {% load tz %}
+  <p>
+    <table class='table' style="margin-bottom:50px;">
+        <tr>
+            <th>Product</th>
+            <th>Seller</th>
+            <th>Time</th>
+        </tr>
+        {% for item in purchases %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.seller }}</td>
+            <td>{{ item.created }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <table class='table times'>
+      <tr>
+        <th>Location</th>
+        <th>Time</th>
+      </tr>
+      {% timezone "Europe/London" %}
+      <tr>
+        <td>London</td>
+        <td>{{ time }}</td>
+      </tr>
+      {% endtimezone %}
+      {% timezone None %}
+      <tr>
+        <td>Kyiv</td>
+        <td>{{ time }}</td>
+      </tr>
+      {% endtimezone %}
+    </table>
+    Server time is Kyiv time.
+
+  </p>
+</div>
+
+
+
+{% endblock %}

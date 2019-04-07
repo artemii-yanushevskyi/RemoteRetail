@@ -12,6 +12,10 @@ class Purchase(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='seller')
     created = models.DateTimeField(auto_now_add=True)
 
+
+    def __str__(self):
+        return '{} by {} on {}'.format(self.product.name, self.seller.username, self.created.strftime("%A, %d. %B %Y %I:%M%p"))
+
     class Meta:
         verbose_name = 'Purchase'
         verbose_name_plural = 'Purchases'

@@ -5,41 +5,71 @@ body {
 	background-color: #1f2833;
 }
 
-h1, h2, h3, h4, h5, h6, .align-items-center {
-	font-size: 25px;
+h1, h2, h3, h4, h5, h6 {
+	font-size: 33px;
   color: #66fcf1;
-  margin: 15px;
+  margin-bottom: 15px;
+	font-weight: 100;
+}
+
+h3 {
+	font-size: 15px;
+  text-transform: uppercase;
+	font-weight: bold;
+	color: gray;
+	margin-bottom: 7px;
+}
+
+h1 {
+	margin-bottom: 22px;
 }
 
 p {
-  margin: 15px;
+  margin-bottom: 15px;
 }
 
-table, td, th {
-  text-align: center;
-  border: 2px solid #45a29e;
+.login form {
+	text-align: center;
 }
-
-.button {
+.login input {
+	margin: auto;
+	margin-bottom: 22px;
+	display: block;
+}
+.login input.loginbutton {
   background-color: #1f2833;
   color: #c5c6c7;
   border: 2px solid #45a29e;
-  padding: 15px;
+	display: block;
+	margin-top: 33px;
+	padding: 12px 18px;
 }
-
-.button:hover {
+.login input.loginbutton:hover {
   background-color: #0b0c10;
 }
 
-input, label {
-  padding: 10px, 0px, 10px, 100px;
-  display: block;
+#products {
+	margin-bottom: 22px;
 }
 
-.sales {
-  visibility: hidden;
+#tap {
+	margin-top: 44px;
+}
+#tap button {
+	display: inline-block;
+	background-color: darkgray;
+  color: black;
+  border: 2px solid cyan; /* Green */
+	padding: 10px 24px;
+	margin-bottom: 12px;
+	margin-right: 8px;
+
+}
+#tap button:hover {
+  background-color: cyan; /* Green */
+  color: orange;
 }
 
-th {
-  color: #45a29e;
+table {
+	margin-bottom: 55px;
 }
