@@ -1,4 +1,0 @@
-*.sh            eol=lf
-*.pip           eol=lf
-*.config        eol=lf
-*.nginxconf     eol=lf

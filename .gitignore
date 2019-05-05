@@ -87,3 +87,4 @@ pip-selfcheck.json
 
 .idea/
 .pypirc
+TelegramBots/bot_token.py
