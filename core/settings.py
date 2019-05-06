@@ -122,6 +122,7 @@ STATIC_URL = '/static/'
 
 INSTALLED_APPS.append('retail')
 INSTALLED_APPS.append('purchasetap')
+INSTALLED_APPS.append('general')
 TIME_ZONE = 'Europe/Kiev'
 
 

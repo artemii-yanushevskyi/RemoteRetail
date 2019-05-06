@@ -13,7 +13,7 @@ class ProductTestCase(TestCase):
         vata = Product.objects.get(name="vata")
         self.assertEqual(float(lion.price), 3.3)
         self.assertEqual(float(vata.price), 34.43)
-
+        self.assertEqual(lion.name, 'vata')
 
 class PurchaseTest(TestCase):
     def setUp(self):
