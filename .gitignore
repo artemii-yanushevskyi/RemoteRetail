@@ -2,3 +2,4 @@ TelegramBots/bot_token.py
 db.sqlite3
 
 __pycache__
+static/admin/
